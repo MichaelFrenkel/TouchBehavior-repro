@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="TouchBehavior_repro.MainPage">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SectionHeader" TargetType="Label">
+                <Setter Property="Margin" Value="0,16,0,6" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label Style="{StaticResource SectionHeader}" Text="Nested effect" />
+
+            <ContentView
+                Padding="50"
+                Background="Yellow"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                WidthRequest="200">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                </ContentView.GestureRecognizers>
+                <!-- <ContentView.Behaviors> -->
+                <!--     <mct:TouchBehavior -->
+                <!--         Command="{Binding ParentClickedCommand}"/> -->
+                <!-- </ContentView.Behaviors> -->
+
+                <ContentView
+                    BackgroundColor="Red"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="100">
+                    <ContentView.Behaviors>
+                        <toolkit:TouchBehavior
+                            TouchGestureCompleted="TouchBehavior_OnTouchGestureCompleted" />
+                    </ContentView.Behaviors>
+                </ContentView>
+            </ContentView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
