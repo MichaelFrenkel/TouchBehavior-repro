@@ -36,6 +36,7 @@
                 <!-- </ContentView.Behaviors> -->
 
                 <ContentView
+                    x:Name="ChildView"
                     BackgroundColor="Red"
                     HeightRequest="100"
                     HorizontalOptions="Center"
