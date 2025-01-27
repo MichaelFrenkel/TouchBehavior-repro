@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="TouchBehavior_repro.MainPage">
+             x:Class="TouchBehavior_repro.MainPage"
+             x:Name="Loans">
     
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -47,6 +48,68 @@
                     </ContentView.Behaviors>
                 </ContentView>
             </ContentView>
+            
+            <BoxView 
+                HeightRequest="1"
+                Color="Gray" />
+            
+            <Border x:Name="LoanBorder">
+                <!-- <Border.GestureRecognizers> -->
+                <!--     <PointerGestureRecognizer -->
+                <!--         PointerPressed="PointerGestureRecognizer_OnPointerPressed" -->
+                <!--         PointerReleased="PointerGestureRecognizer_OnPointerReleased" /> -->
+                <!-- </Border.GestureRecognizers> -->
+                <!-- <Border.Behaviors> -->
+                <!--     <toolkit:TouchBehavior LongPressCommand="{Binding Source={x:Reference Loans}, Path=ShowContextMenuCommand, x:DataType=ContentPage}"/> -->
+                <!-- </Border.Behaviors> -->
+                <VerticalStackLayout>
+                    <!-- Default View -->
+                    <Label Text="Borrower.FullName"
+                           FontSize="16" />
+
+                    <!-- Collapsible Details -->
+                    <toolkit:Expander ExpandedChanged="Expander_OnExpandedChanged">
+                        <toolkit:Expander.Header>
+                            <Grid ColumnDefinitions="*, Auto" VerticalOptions="CenterAndExpand">
+                                <Label Text="Name"
+                                       FontSize="14"
+                                       Grid.Column="0" />
+
+                                <Button Text="Button +"
+                                        FontSize="14"
+                                        TextColor="White"
+                                        HeightRequest="20"
+                                        MinimumWidthRequest="20"
+                                        MinimumHeightRequest="20"
+                                        Padding="0"
+                                        HorizontalOptions="End"
+                                        Grid.Column="1"
+                                        Clicked="Button_OnClicked" />
+                            </Grid>
+                        </toolkit:Expander.Header>
+
+                        <toolkit:Expander.Content>
+                            <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, Auto">
+                                <!-- Original Loan Amount -->
+                                <Label Text="Original:" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="OriginalLoanAmount" Grid.Row="0" Grid.Column="1" HorizontalOptions="End" />
+
+                                <!-- Remaining Loan Amount -->
+                                <Label Text="Remaining:" Grid.Row="1" Grid.Column="0" />
+                                <Label Text="RemainingLoanAmount" Grid.Row="1" Grid.Column="1" HorizontalOptions="End" />
+
+                                <!-- Interest Rate -->
+                                <Label Text="Interest Rate:" Grid.Row="2" Grid.Column="0" />
+                                <Label Text="Interest" Grid.Row="2" Grid.Column="1" HorizontalOptions="End" />
+
+                                <!-- Loan End Date -->
+                                <Label Text="End Date:" Grid.Row="3" Grid.Column="0" />
+                                <Label Text="LoanEndDate" Grid.Row="3" Grid.Column="1" HorizontalOptions="End" />
+                            </Grid>
+                        </toolkit:Expander.Content>
+                    </toolkit:Expander>
+                </VerticalStackLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 
